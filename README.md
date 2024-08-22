@@ -34,10 +34,10 @@ const hashedPassword = await argon2.hash(password);
 4. **Store the Hash:** The hashed password is then stored in the database, associated with the user account:
 ```typescript
 const user = await prisma.user.create({
-	data: {
-		username: username as string,
-		password: hashedPassword as string,
-	},
+   data: {
+      username: username as string,
+      password: hashedPassword as string,
+   },
 });
 ```
 
@@ -85,9 +85,9 @@ const { username, password } = req.body;
 2. **Find and Isolates User:** The system searches for the user by their unique username. We isolate it so Argon2 can get its unique salt to compare the passwords.
 ```typescript
 const user = await prisma.user.findUnique({
-	where: {
-		username: username as string,
-	},
+   where: {
+      username: username as string,
+   },
 });
 ```
 
@@ -99,7 +99,7 @@ const user = await prisma.user.findUnique({
 4. Argon2 hashes the input from the login and compares it with the stored hash. If the passwords match, the user is successfully logged in:
 ```typescript
 if (passwordVerified) {
-	return res.status(200).json({ message: "Logged in successfully" });
+   return res.status(200).json({ message: "Logged in successfully" });
 }
 ```
 
