@@ -29,7 +29,7 @@ usersRouter.post('/login', async (req, res) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
-        username,
+        username: username as string,
       },
     });
 
